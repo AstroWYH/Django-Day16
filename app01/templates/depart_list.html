@@ -59,12 +59,15 @@
 <div>
     <div class="container">
         <div style="margin-bottom: 10px">
-            <a class="btn btn-primary" href="#">New Department</a>
+            <a class="btn btn-success" href="/depart/add/">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                New Department
+            </a>
         </div>
         <div class="panel panel-default" style="background-color: rgb(222, 251, 226); border-color: rgba(0, 0, 0, 0.35);">
             <!-- Default panel contents -->
             <div class="panel-heading">
-                <span class="glyphicon-class">glyphicon glyphicon-th-list</span>
+                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                 Department List
             </div>
 
@@ -72,31 +75,22 @@
             <table class="table table-bordered" style="border-color: rgba(0, 0, 0, 0.35);">
                 <thead style="border-color: rgba(0, 0, 0, 0.35);">
                 <tr style="border-color: rgba(0, 0, 0, 0.35);">
-                    <th style="border-bottom-color: rgba(0, 0, 0, 0.35);">#</th>
-                    <th style="border-bottom-color: rgba(0, 0, 0, 0.35);">First Name</th>
-                    <th style="border-bottom-color: rgba(0, 0, 0, 0.35);">Last Name</th>
-                    <th style="border-bottom-color: rgba(0, 0, 0, 0.35);">Username</th>
+                    <th style="border-bottom-color: rgba(0, 0, 0, 0.35);">ID</th>
+                    <th style="border-bottom-color: rgba(0, 0, 0, 0.35);">Depart Name</th>
+                    <th style="border-bottom-color: rgba(0, 0, 0, 0.35);">Operation</th>
                 </tr>
                 </thead>
                 <tbody style="border-color: rgba(0, 0, 0, 0.35);">
-                <tr style="border-color: rgba(0, 0, 0, 0.35);">
-                    <th scope="row" style="border-top-color: rgba(0, 0, 0, 0.35);">1</th>
-                    <td style="border-top-color: rgba(0, 0, 0, 0.35);">Mark</td>
-                    <td style="border-top-color: rgba(0, 0, 0, 0.35);">Otto</td>
-                    <td style="border-top-color: rgba(0, 0, 0, 0.35);">@mdo</td>
-                </tr>
-                <tr style="border-color: rgba(0, 0, 0, 0.35);">
-                    <th scope="row" style="border-top-color: rgba(0, 0, 0, 0.35);">2</th>
-                    <td style="border-top-color: rgba(0, 0, 0, 0.35);">Jacob</td>
-                    <td style="border-top-color: rgba(0, 0, 0, 0.35);">Thornton</td>
-                    <td style="border-top-color: rgba(0, 0, 0, 0.35);">@fat</td>
-                </tr>
-                <tr style="border-color: rgba(0, 0, 0, 0.35);">
-                    <th scope="row" style="border-top-color: rgba(0, 0, 0, 0.35);">3</th>
-                    <td style="border-top-color: rgba(0, 0, 0, 0.35);">Larry</td>
-                    <td style="border-top-color: rgba(0, 0, 0, 0.35);">the Bird</td>
-                    <td style="border-top-color: rgba(0, 0, 0, 0.35);">@twitter</td>
-                </tr>
+                {% for obj in queryset %}
+                    <tr style="border-color: rgba(0, 0, 0, 0.35);">
+                        <th scope="row" style="border-top-color: rgba(0, 0, 0, 0.35);">{{ obj.id }}</th>
+                        <td style="border-top-color: rgba(0, 0, 0, 0.35);">{{ obj.title }}</td>
+                        <td style="border-top-color: rgba(0, 0, 0, 0.35);">
+                            <a class="btn btn-primary btn-xs" href="/depart/{{ obj.id }}/edit/">Edit</a>
+                            <a class="btn btn-danger btn-xs" href="/depart/delete/?nid={{ obj.id }}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>

@@ -21,4 +21,8 @@ from app01 import views
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('depart/list/', views.depart_list),
+    path('depart/add/', views.depart_add),
+    path('depart/delete/', views.depart_delete),
+    # 这样用正则，则中间必须传递一个 int (django3 的功能)
+    path('depart/<int:nid>/edit/', views.depart_edit),
 ]
